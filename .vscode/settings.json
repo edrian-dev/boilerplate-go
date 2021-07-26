@@ -1,0 +1,26 @@
+{
+    "cSpell.ignoreWords": [
+        "bcrypt",
+        "conexi",
+        "conexión",
+        "correo",
+        "db",
+        "direcci",
+        "dirección",
+        "electr",
+        "electrónico",
+        "entorno",
+        "existe",
+        "godotenv",
+        "gorm",
+        "n",
+        "nico",
+        "obtener",
+        "postgres",
+        "prueba",
+        "siends",
+        "signin",
+        "signup",
+        "ucase"
+    ]
+}

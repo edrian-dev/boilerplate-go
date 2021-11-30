@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	_user "github.com/siends/siends-api/api/user"
-	_models "github.com/siends/siends-api/models"
+	_user "github.com/nomada-sh/levita-stp/api/user"
+	_models "github.com/nomada-sh/levita-stp/models"
 )
 
 type usecase struct {

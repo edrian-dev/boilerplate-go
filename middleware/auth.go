@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"github.com/labstack/echo"
-	_models "github.com/siends/siends-api/models"
+	_models "github.com/nomada-sh/levita-stp/models"
 )
 
 // Auth ...

@@ -5,48 +5,48 @@ import (
 
 	"github.com/labstack/echo"
 
-	_user "github.com/nomada-sh/levita-stp/api/user"
+	_stp "github.com/nomada-sh/levita-stp/api/stp"
 	_models "github.com/nomada-sh/levita-stp/models"
 )
 
 type deliveryLayer struct {
-	User   _user.Usecase
+	STP    _stp.Usecase
 	Router *echo.Echo
 }
 
 // Input ...
 type Input struct {
 	Router *echo.Echo
-	User   _user.Usecase
+	STP    _stp.Usecase
 }
 
 func NewRouter(input Input) {
 	delivery := deliveryLayer{
-		User:   input.User,
+		STP:    input.STP,
 		Router: input.Router,
 	}
 
-	delivery.Router.POST("/signup", delivery.signup)
-	delivery.Router.POST("/signin", delivery.signin)
+	delivery.Router.POST("/dispersion", delivery.dispersion)
+	delivery.Router.POST("/signin", delivery.changeStatus)
 }
 
-func (delivery *deliveryLayer) signin(c echo.Context) error {
+func (delivery *deliveryLayer) dispersion(c echo.Context) error {
 	var statusCode int
 	var response _models.Response
-	body := new(_models.UserInput)
+	body := new(_models.DispersionInput)
 	if err := c.Bind(body); err != nil {
 		response.Errors = append(response.Errors, _models.Error{
-			Type:     "/errors/signin",
+			Type:     "/errors/dispersion",
 			Title:    "Error while decoding data",
 			Status:   400,
 			Detail:   err.Error(),
-			Instance: "/api/user/delivery/restful/main.go",
+			Instance: "/api/stp/delivery/restful/main.go",
 		})
 
 		return c.JSON(http.StatusBadRequest, response)
 	}
 
-	response = delivery.User.Signin(body)
+	response = delivery.STP.Dispersion(*body)
 	if response.Errors != nil {
 		statusCode = http.StatusBadRequest
 	} else {
@@ -56,24 +56,15 @@ func (delivery *deliveryLayer) signin(c echo.Context) error {
 	return c.JSON(statusCode, response)
 }
 
-func (delivery *deliveryLayer) signup(c echo.Context) error {
+func (delivery *deliveryLayer) changeStatus(c echo.Context) error {
 	var statusCode int
-	var response _models.Response
-	body := new(_models.UserInput)
+	body := new(_models.DispersionStatus)
 	if err := c.Bind(body); err != nil {
-		response.Errors = append(response.Errors, _models.Error{
-			Type:     "/errors/signup",
-			Title:    "Error while decoding data",
-			Status:   400,
-			Detail:   err.Error(),
-			Instance: "/api/user/delivery/restful/main.go",
-		})
-
-		return c.JSON(http.StatusBadRequest, response)
+		return c.JSON(http.StatusBadRequest, nil)
 	}
 
-	response = delivery.User.Signup(body)
-	if response.Errors != nil {
+	response, err := delivery.STP.ChangeStatus(body)
+	if err != nil {
 		statusCode = http.StatusBadRequest
 	} else {
 		statusCode = http.StatusCreated

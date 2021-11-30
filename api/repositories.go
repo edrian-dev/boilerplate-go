@@ -1,9 +1,10 @@
 package api
 
 import (
-	_userRepository "github.com/siends/siends-api/api/user/repository"
-	_db "github.com/siends/siends-api/db"
-	_models "github.com/siends/siends-api/models"
+	_stpRepository "github.com/nomada-sh/levita-stp/api/stp/repository"
+	_userRepository "github.com/nomada-sh/levita-stp/api/user/repository"
+	_db "github.com/nomada-sh/levita-stp/db"
+	_models "github.com/nomada-sh/levita-stp/models"
 )
 
 var input = _models.InputRepository{
@@ -11,3 +12,4 @@ var input = _models.InputRepository{
 }
 
 var user = _userRepository.NewRepository(input)
+var stp = _stpRepository.NewRepository(input)

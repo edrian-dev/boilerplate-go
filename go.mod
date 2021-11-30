@@ -1,4 +1,4 @@
-module github.com/siends/siends-api
+module github.com/nomada-sh/levita-stp
 
 go 1.14
 

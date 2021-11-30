@@ -1,7 +1,7 @@
 package db
 
 import (
-	_helpers "github.com/siends/siends-api/helpers"
+	_helpers "github.com/nomada-sh/levita-stp/helpers"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

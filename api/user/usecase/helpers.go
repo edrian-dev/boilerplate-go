@@ -7,8 +7,8 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"golang.org/x/crypto/bcrypt"
 
-	_helpers "github.com/siends/siends-api/helpers"
-	_models "github.com/siends/siends-api/models"
+	_helpers "github.com/nomada-sh/levita-stp/helpers"
+	_models "github.com/nomada-sh/levita-stp/models"
 )
 
 const envKey = "SECRET"

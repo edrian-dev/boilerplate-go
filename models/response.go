@@ -19,6 +19,10 @@ type Response struct {
 	Data   interface{} `json:"data"`
 }
 
+type STPResponse struct {
+	Message string `json:"message"`
+}
+
 func (doc *Response) Error() error {
 	jsonMarshal, err := json.Marshal(doc)
 	if err != nil {

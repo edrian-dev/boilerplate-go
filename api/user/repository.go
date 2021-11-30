@@ -1,7 +1,7 @@
 package user
 
 import (
-	_models "github.com/siends/siends-api/models"
+	_models "github.com/nomada-sh/levita-stp/models"
 )
 
 // Repository ...

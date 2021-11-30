@@ -6,8 +6,9 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 
-	_api "github.com/siends/siends-api/api"
-	_userDelivery "github.com/siends/siends-api/api/user/delivery/restful"
+	_api "github.com/nomada-sh/levita-stp/api"
+	_stpDelivery "github.com/nomada-sh/levita-stp/api/stp/delivery/restful"
+	_userDelivery "github.com/nomada-sh/levita-stp/api/user/delivery/restful"
 )
 
 const version = "0.1"
@@ -27,6 +28,11 @@ func NewRouter(port string) {
 	_userDelivery.NewRouter(_userDelivery.Input{
 		Router: server,
 		User:   _api.User,
+	})
+
+	_stpDelivery.NewRouter(_stpDelivery.Input{
+		Router: server,
+		STP:    _api.STP,
 	})
 
 	server.Start(port)

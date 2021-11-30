@@ -1,7 +1,7 @@
 package main
 
 import (
-	_server "github.com/siends/siends-api/server"
+	_server "github.com/nomada-sh/levita-stp/server"
 )
 
 const PORT = ":9000"

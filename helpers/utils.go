@@ -12,6 +12,10 @@ const envFilePath = "config.env"
 
 // GetEnvironmentVariable obtener variable de entorno
 func GetEnvironmentVariable(variable string) string {
+	dir, _ := os.Getwd()
+	log.Printf("Dir: %v", dir)
+	log.Printf("Env: %v", os.Getenv(variable))
+
 	err := godotenv.Load(envFilePath)
 	if err != nil {
 		panic(err)
